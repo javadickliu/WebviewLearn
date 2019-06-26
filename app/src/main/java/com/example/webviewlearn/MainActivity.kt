@@ -10,6 +10,10 @@ import android.webkit.*
 import kotlinx.android.synthetic.main.activity_main.*
 import android.view.KeyEvent.KEYCODE_BACK
 
+import android.view.ViewGroup
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,22 +30,24 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true)
         }
+        //mainactivity_webview.
 //        mainactivity_webview.onResume()
 //       //判断WebView是否可以向前一个页面
 //        mainactivity_webview.canGoBack()//判断WebView是否可以返回上一页
 //        mainactivity_webview.goBack()//后退
 
-//        var webSettings = mainactivity_webview.settings//
+       var webSettings = mainactivity_webview.settings//
 //        webSettings.cacheMode = WebSettings.LOAD_DEFAULT
 //        Log.d("test", getFilesDir().getAbsolutePath() + "/webcache")
 //        mainactivity_webview.settings.setAppCachePath(getFilesDir().getAbsolutePath() + "/webcache")
 //        mainactivity_webview.settings.setAppCacheEnabled(true)
 //        mainactivity_webview.settings.useWideViewPort=true//将图片调整到适合webview的大小
 //        mainactivity_webview.settings.loadWithOverviewMode=true
+  //      mainactivity_webview.settings.loadsImagesAutomatically
 
 //        webSettings.setSupportZoom(true)//设置缩放相关
-//        webSettings.builtInZoomControls=true
-//        webSettings.displayZoomControls=false
+        webSettings.builtInZoomControls=true
+        webSettings.displayZoomControls=true
 
      //   mainactivity_webview.settings.domStorageEnabled=true
         mainactivity_webview.settings.javaScriptEnabled=true
@@ -112,14 +118,15 @@ class MainActivity : AppCompatActivity() {
 
     //    mainactivity_webview.loadUrl("http://www.ifeng.com/")//加载url
 
-   //     mainactivity_webview.loadUrl("http://www.ifeng.com")//加载url
+       mainactivity_webview.loadUrl("http://www.ifeng.com")//加载url
     //     mainactivity_webview.loadUrl("http://api.xiaobeibike.com/File/Html/joinIn.html")//加载url
-        mainactivity_webview.loadUrl("https://y.gtimg.cn/c/=/music/portal/js/common/map.js,/music/portal/js/common/music/mod.js?r=2602287")//加载url
+     //   mainactivity_webview.loadUrl("https://y.gtimg.cn/c/=/music/portal/js/common/map.js,/music/portal/js/common/music/mod.js?r=2602287")//加载url
+   //     mainactivity_webview.loadUrl("https://lori.tw/api/1209.mp3")//加载url
 
         object :Handler(){
             override fun handleMessage(msg: Message?) {
                 super.handleMessage(msg)
-//               mainactivity_webview.destroy()//销毁WebView加载的界面
+        //       mainactivity_webview.destroy()//销毁WebView加载的界面
 ////                Thread.sleep(4000)
 //               mainactivity_webview.onResume()
 //                mainactivity_webview.onPause()
@@ -136,4 +143,9 @@ class MainActivity : AppCompatActivity() {
         return super.onKeyDown(keyCode, event)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        (mainactivity_webview.getParent() as ViewGroup).removeView(mainactivity_webview)
+        mainactivity_webview.destroy()
+    }
 }
