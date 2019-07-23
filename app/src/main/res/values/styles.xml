@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowDisablePreview">true</item> <!--window禁止背景,设置了没有白屏了-->
+        <item name="android:windowIsTranslucent">true</item>  window背景设置为透明
+        <item name="android:windowBackground">@mipmap/ic_launcher</item>
     </style>
 
 </resources>
